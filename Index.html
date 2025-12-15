@@ -57,4 +57,123 @@
     }
     .title p {
       margin: 4px 0 0;
-      color
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .status {
+      margin: 16px 0 20px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #e8f5e9;
+      color: var(--ok);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 18px;
+    }
+    .item {
+      background: #fafafa;
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .item span {
+      display: block;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .item strong {
+      display: block;
+      margin-top: 4px;
+      font-size: .98rem;
+    }
+    .footer {
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px dashed #ddd;
+      font-size: .85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <header class="header">
+      <div class="logo">UC</div>
+      <div class="title">
+        <h1>Universidade Cesumar (UniCesumar)</h1>
+        <p>Sistema de Verificação de Registro Acadêmico</p>
+      </div>
+    </header><section class="status">✔ Registro encontrado — Diploma Ativo</section>
+
+<section class="item" style="margin-bottom:18px">
+  <span>Pesquisar outro registro</span>
+  <input id="busca" type="text" placeholder="Digite o número do registro" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid #ccc;font-size:.95rem;margin-top:6px" />
+  <button onclick="buscarRegistro()" style="margin-top:10px;width:100%;padding:12px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer">Consultar</button>
+</section>
+
+<section id="resultado" class="grid" aria-label="Dados do Registro" style="display:none">
+  <div class="item">
+    <span>Nome do Aluno</span>
+    <strong id="nome"></strong>
+  </div>
+  <div class="item">
+    <span>Instituição</span>
+    <strong id="instituicao"></strong>
+  </div>
+  <div class="item">
+    <span>Curso</span>
+    <strong id="curso"></strong>
+  </div>
+  <div class="item">
+    <span>Data de Conclusão</span>
+    <strong id="conclusao"></strong>
+  </div>
+  <div class="item">
+    <span>Número de Registro</span>
+    <strong id="registro"></strong>
+  </div>
+  <div class="item">
+    <span>Situação</span>
+    <strong id="situacao"></strong>
+  </div>
+</section>
+
+<footer class="footer">
+  Este comprovante digital é gerado para fins de conferência de dados acadêmicos.
+</footer>
+
+  </main>
+<script>
+  function buscarRegistro(){
+    const valor = document.getElementById('busca').value.trim();
+    const resultado = document.getElementById('resultado');if(valor === '576456-86'){
+  document.getElementById('nome').innerText = 'Cássio Augusto Rosa';
+  document.getElementById('instituicao').innerText = 'Universidade Cesumar (UniCesumar)';
+  document.getElementById('curso').innerText = 'Pós-Graduação em Engenharia Mecatrônica';
+  document.getElementById('conclusao').innerText = '14/08/2020';
+  document.getElementById('registro').innerText = '576456-86';
+  document.getElementById('situacao').innerText = 'Regular';
+
+  resultado.style.display = 'grid';
+  alert('Registro localizado com sucesso.');
+} else if(valor === ''){
+  alert('Digite um número de registro.');
+  resultado.style.display = 'none';
+} else {
+  alert('Registro não localizado.');
+  resultado.style.display = 'none';
+}
+
+} else if(valor === ''){ alert('Digite um número de registro.'); } else { alert('Registro não localizado.'); } } </script>
+
+</body>
+</html>
